@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz</h1>
+        <form method="POST">
+            {% for q_index, q in indexed_questions %}
+                <p>{{ q.question }}</p>
+                {% for opt in q.options %}
+                    <label>
+                        <input type="radio" name="q{{ q_index }}" value="{{ opt }}" required> {{ opt }}
+                    </label>
+                {% endfor %}
+                <br>
+            {% endfor %}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
